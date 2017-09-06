@@ -1,6 +1,6 @@
 <template>
   <div class="shake">
-  	<headerTab title="摇一摇" icon=""></headerTab>
+    <headerTab title="摇一摇" icon=""></headerTab>
     <audio id="audio_shake">
       <source src="../assets/mp3/shakes.mp3" type="audio/ogg">
       <source src="../assets/mp3/shakes.mp3" type="audio/mpeg"> Your browser does not support the audio tag.
@@ -61,16 +61,42 @@ export default {
     }
   },
   mounted() {
-    var audio_shake = document.getElementById("audio_shake");
-    var audio = document.getElementById("audio");
-    document.addEventListener("WeixinJSBridgeReady", function() {
-      audio_shake.load();
-      audio.load();
+    //ios微信可播放兼容代码
+    if (typeof WeixinJsBridge == 'undefined') {
 
-    }, false);
+      　　
+      if (document.addEventListener) {　　　
+        document.addEventListener('WeixinJsBridgeReady', this.onBridgeReady(), false);
+
+        　　
+      } else if (document.attachEvent) {
+
+        　　　　
+        document.attachEvent('WeixinJsBridgeReady', this.onBridgeReady);
+
+        　　　　
+        document.attachEvent('onWeixinJsBridgeReady', this.onBridgeReady);
+
+        　　
+      }
+
+    } else {
+
+      this.onBridgeReady();
+
+    }
+
+
   },
   methods: {
     //摇一摇效果代码
+    onBridgeReady() {
+      var audio_shake = document.getElementById("audio_shake");
+      var audio = document.getElementById("audio");
+      audio_shake.load();
+
+      audio.load();
+    },
     deviceMotionHandler(eventData) {
 
       var acceleration = eventData.accelerationIncludingGravity;
@@ -163,7 +189,7 @@ export default {
   min-height: 100vh;
   text-align: center;
   .hand {
-  	  padding-top: 30vh;
+    padding-top: 30vh;
     img {
       width: 150px;
     }
