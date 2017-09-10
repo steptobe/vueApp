@@ -62,30 +62,7 @@ export default {
   },
   mounted() {
     //ios微信可播放兼容代码
-    if (typeof WeixinJsBridge == 'undefined') {
-
-      　　
-      if (document.addEventListener) {　　　
-        document.addEventListener('WeixinJsBridgeReady', this.onBridgeReady(), false);
-
-        　　
-      } else if (document.attachEvent) {
-
-        　　　　
-        document.attachEvent('WeixinJsBridgeReady', this.onBridgeReady);
-
-        　　　　
-        document.attachEvent('onWeixinJsBridgeReady', this.onBridgeReady);
-
-        　　
-      }
-
-    } else {
-
-      this.onBridgeReady();
-
-    }
-
+    this.onBridgeReady()
 
   },
   methods: {
@@ -93,9 +70,21 @@ export default {
     onBridgeReady() {
       var audio_shake = document.getElementById("audio_shake");
       var audio = document.getElementById("audio");
-      audio_shake.load();
+      
+      wx.config({
+            // 配置信息, 即使不正确也能使用 wx.ready
+            debug: false,
+            appId: '',
+            timestamp: 1,
+            nonceStr: '',
+            signature: '',
+            jsApiList: []
+        });
+        wx.ready(function() {
+          audio_shake.load();
+          audio.load();
+        });
 
-      audio.load();
     },
     deviceMotionHandler(eventData) {
 
