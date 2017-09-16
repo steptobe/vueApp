@@ -25,6 +25,10 @@
 	export default{
 		components:{
 			slotChild
+		},
+		created(){
+			    sessionStorage.setItem("need-refresh", true);
+			    
 		}
 	}
 </script>

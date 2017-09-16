@@ -9,7 +9,7 @@
       <source src="../assets/mp3/skresult.mp3" type="audio/ogg">
       <source src="../assets/mp3/skresult.mp3" type="audio/mpeg"> Your browser does not support the audio tag.
     </audio>
-    <div class="hand" v-bind:class="{'hand-animate':rotate}">
+    <div class="hand" v-bind:class="{'hand-animate':rotate}" @click="onBridgeReady">
       <img src="../assets/images/shake.png" alt="摇一摇">
     </div>
     <p>马上摇一摇，偷听私密课</p>
@@ -19,7 +19,7 @@
       <h5 class="class-name">{{data.class_name}}</h5>
       <h5 class="teacher-name">{{data.teacher_name}}</h5>
       <p class="brief">{{data.brief}}</p>
-      <router-link to="" class="btn-icon">进去学习</router-link>
+      <router-link to="/slotPage" class="btn-icon">进去学习</router-link>
     </div>
   </div>
 </template>
@@ -59,31 +59,39 @@ export default {
     } else {
       alert('抱歉，你的手机配置实在有些过不去，考虑换个新的再来试试吧');
     }
+
+
   },
   mounted() {
     //ios微信可播放兼容代码
     this.onBridgeReady()
-
+    var needRefresh = sessionStorage.getItem("need-refresh");
+    if(needRefresh){
+        sessionStorage.removeItem("need-refresh");
+        location.reload();
+    }
   },
   methods: {
     //摇一摇效果代码
     onBridgeReady() {
       var audio_shake = document.getElementById("audio_shake");
       var audio = document.getElementById("audio");
-      
+
       wx.config({
-            // 配置信息, 即使不正确也能使用 wx.ready
-            debug: false,
-            appId: '',
-            timestamp: 1,
-            nonceStr: '',
-            signature: '',
-            jsApiList: []
-        });
-        wx.ready(function() {
-          audio_shake.load();
-          audio.load();
-        });
+        // 配置信息, 即使不正确也能使用 wx.ready
+        debug: false,
+        appId: '',
+        timestamp: 1,
+        nonceStr: '',
+        signature: '',
+        jsApiList: []
+      });
+      wx.ready(function() {
+        audio_shake.load();
+        audio.load();
+
+
+      });
 
     },
     deviceMotionHandler(eventData) {
