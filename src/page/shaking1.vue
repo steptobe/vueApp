@@ -58,10 +58,10 @@ export default {
       alert('抱歉，你的手机配置实在有些过不去，考虑换个新的再来试试吧');
     }
   },
-  activated(){
-      this.msgboxShow = false
-      this.medalShow = false
-    },
+  // activated(){
+  //     this.msgboxShow = false
+  //     this.medalShow = false
+  //   },
   mounted() {
     this.init()
     //ios微信可播放兼容代码

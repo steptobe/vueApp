@@ -4,6 +4,7 @@
     <div class="container">
     <mt-cell title="课程" is-link to="/pullUp"></mt-cell>
     <mt-cell title="摇一摇" is-link to="/shaking"></mt-cell>
+     <mt-cell title="摇一摇1" is-link to="/shaking1"></mt-cell>
 	<mt-cell title="prop学习" is-link to="/propPage"></mt-cell>
 	<mt-cell title="slot学习" is-link to="/slotPage"></mt-cell>
 
