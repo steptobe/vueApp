@@ -9,7 +9,8 @@
       <source src="../assets/mp3/skresult.mp3" type="audio/ogg">
       <source src="../assets/mp3/skresult.mp3" type="audio/mpeg"> Your browser does not support the audio tag.
     </audio>
-    <div class="hand" v-bind:class="{'hand-animate':rotate}" @click="init">
+
+    <div class="hand" v-bind:class="{'hand-animate':rotate}" @click="onBridgeReady">
       <img src="../assets/images/shake.png" alt="摇一摇">
     </div>
     <p>马上摇一摇，偷听私密课</p>
@@ -57,61 +58,43 @@ export default {
     } else {
       alert('抱歉，你的手机配置实在有些过不去，考虑换个新的再来试试吧');
     }
+
+
   },
-  activated(){
-      this.msgboxShow = false
-      this.medalShow = false
-    },
+  activated() {
+    this.msgboxShow = false
+    this.medalShow = false
+  },
   mounted() {
-    this.init()
     //ios微信可播放兼容代码
-    // if (typeof WeixinJsBridge == 'undefined') {
-    //   　　
-    //   if (document.addEventListener) {　　　
-    //     document.addEventListener('WeixinJsBridgeReady', this.onBridgeReady(), false);
-    //     　　
-    //   } else if (document.attachEvent) {
-    //     　　　　
-    //     document.attachEvent('WeixinJsBridgeReady', this.onBridgeReady);
-    //     　　　　
-    //     document.attachEvent('onWeixinJsBridgeReady', this.onBridgeReady);
-    //     　　
-    //   }
-    // } else {
-    //   this.onBridgeReady();
-    // }
+
+    this.onBridgeReady()
+    var needRefresh = sessionStorage.getItem("need-refresh");
+    if (needRefresh) {
+      sessionStorage.removeItem("need-refresh");
+      location.reload();
+    }
   },
   methods: {
-    init(){
-     
-        wx.config({
-            // 配置信息, 即使不正确也能使用 wx.ready
-            // debug: false,
-            // appId: '',
-            // timestamp: 1,
-            // nonceStr: '',
-            // signature: '',
-            // jsApiList: []
-        });
-        wx.ready(function() {
-         
-            document.getElementById('audio').load();
-            document.getElementById('audio_shake').load();
-            
-           
-        });
-  
-    },
     //摇一摇效果代码
     onBridgeReady() {
       var audio_shake = document.getElementById("audio_shake");
       var audio = document.getElementById("audio");
-       audio_shake.load();
-      audio.load();
-      audio_shake.addEventListener("canplaythrough", function () {
-        audio_shake.play();
-      audio.play();
-      })
+      wx.config({
+        // 配置信息, 即使不正确也能使用 wx.ready
+        debug: false,
+        appId: '',
+        timestamp: 1,
+        nonceStr: '',
+        signature: '',
+        jsApiList: []
+      });
+      wx.ready(function() {
+        audio_shake.load();
+        audio.load();
+
+
+      });
     },
 
     deviceMotionHandler(eventData) {

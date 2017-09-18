@@ -5,8 +5,8 @@
     <div class="box">
     <slotChild>
     	<h1>这是一个U盘</h1>
-    	<h2 slot="s1">这是一个具名的slot</h2>
-    	<h2 slot="s2">这是一个具名的slot哦</h2>
+    	<h2 slot="s1">我是鲁班</h2>
+    	<h2 slot="s2">我是安其拉</h2>
 
     </slotChild>
 </div>
@@ -25,6 +25,10 @@
 	export default{
 		components:{
 			slotChild
+		},
+		created(){
+			    sessionStorage.setItem("need-refresh", true);
+			    
 		}
 	}
 </script>

@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-<!--     <img src="./assets/logo.png">
-
- -->    
  <!-- 需要缓存的路由 -->
         <keep-alive>
           <router-view name="keepAliveRouter"></router-view>
