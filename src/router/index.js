@@ -7,9 +7,10 @@ const shaking = resolve => require(['../page/shaking.vue'], resolve)
 const shaking1 = resolve => require(['../page/shaking1.vue'], resolve)
 const propPage = resolve => require(['../page/prop.vue'], resolve)
 const slotPage = resolve => require(['../page/slot.vue'], resolve)
+    //flexbox
 const flex = resolve => require(['../page/flex.vue'], resolve)
-
-
+    //生命周期函数学习
+const lebenszyklus = resolve => require(['../page/lebenszyklus.vue'], resolve)
 
 const routes = [{
         path: '/',
@@ -19,6 +20,11 @@ const routes = [{
         path: '/index',
         name: index,
         component: index
+    },
+    {
+        path: '/lebenszyklus',
+        name: lebenszyklus,
+        component: lebenszyklus
     },
     {
         path: '/pullUp',

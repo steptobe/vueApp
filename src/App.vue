@@ -5,7 +5,7 @@
           <router-view name="keepAliveRouter"></router-view>
         </keep-alive>
         <!-- 不需要缓存的路由 -->
-        <router-view></router-view>
+        <transition name="fade" mode="out-in"><router-view></router-view></transition>
   </div>
 </template>
 
