@@ -58,6 +58,19 @@ export default {
     } else {
       alert('抱歉，你的手机配置实在有些过不去，考虑换个新的再来试试吧');
     }
+    wx.onMenuShareAppMessage({
+      title: '分享标题', // 分享标题
+      link: 'baidu.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: '', // 分享图标
+      success: function() {
+        // 用户确认分享后执行的回调函数
+        alert('成功')
+      },
+      cancel: function() {
+        // 用户取消分享后执行的回调函数
+        alert('quxiao')
+      }
+    });
 
 
   },
@@ -82,7 +95,7 @@ export default {
       var audio = document.getElementById("audio");
       wx.config({
         // 配置信息, 即使不正确也能使用 wx.ready
-        debug: false,
+        debug: true,
         appId: '',
         timestamp: 1,
         nonceStr: '',
