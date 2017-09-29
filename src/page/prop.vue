@@ -21,6 +21,9 @@ export default {
 	methods: {
 		copyToClipBoard() {
 			const userAgent = navigator.userAgent;
+			  this.$http.get('https://api.douban.com/v2/movie/coming_soon' ).then(res => {
+                       console.log(res.body.data)
+                    })
 			if (userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1) {//android
 				document.getElementById("copy-input").select();
 				document.execCommand('copy', 'false', null);
