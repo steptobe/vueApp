@@ -175,9 +175,7 @@ export default {
     },
     getPrivateData() {
       this.data.class_name = "摇一摇"
-       this.$http.get('https://api.douban.com/v2/book/1220562' ).then(res => {
-                       console.log(res.body.data)
-                    })
+     
     },
     msgPop() {
       this.msgboxShow = false

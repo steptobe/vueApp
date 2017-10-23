@@ -11,6 +11,9 @@ const slotPage = resolve => require(['../page/slot.vue'], resolve)
 const flex = resolve => require(['../page/flex.vue'], resolve)
     //生命周期函数学习
 const lebenszyklus = resolve => require(['../page/lebenszyklus.vue'], resolve)
+    //图片上传组件
+const upPhoto = resolve => require(['../page/upPhoto.vue'], resolve)
+
 
 const routes = [{
         path: '/',
@@ -59,6 +62,10 @@ const routes = [{
         path: '/flex',
         name: flex,
         component: flex
+    },
+    {
+        path: '/upPhoto',
+        component: upPhoto
     }
 
 ]

@@ -10,6 +10,7 @@
       <mt-cell title="slot学习" is-link to="/slotPage"></mt-cell>
       <mt-cell title="flexbox学习" is-link to="/flex"></mt-cell>
       <mt-cell title="生命周期函数学习" is-link to="/lebenszyklus"></mt-cell>
+      <mt-cell title="图片上传组件" is-link to="/upPhoto"></mt-cell>
     </div>
   </div>
 </template>
