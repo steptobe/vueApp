@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-<!--     <img src="./assets/logo.png">
- -->    <router-view></router-view>
+ <!-- 需要缓存的路由 -->
+        <keep-alive>
+          <router-view name="keepAliveRouter"></router-view>
+        </keep-alive>
+        <!-- 不需要缓存的路由 -->
+        <transition name="fade" mode="out-in"><router-view></router-view></transition>
   </div>
 </template>
 

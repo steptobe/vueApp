@@ -4,51 +4,74 @@ import Router from 'vue-router'
 const pullUp = resolve => require(['../page/pullUp.vue'], resolve)
 const index = resolve => require(['../page/index.vue'], resolve)
 const shaking = resolve => require(['../page/shaking.vue'], resolve)
+const shaking1 = resolve => require(['../page/shaking1.vue'], resolve)
 const propPage = resolve => require(['../page/prop.vue'], resolve)
 const slotPage = resolve => require(['../page/slot.vue'], resolve)
+    //flexbox
 const flex = resolve => require(['../page/flex.vue'], resolve)
+    //生命周期函数学习
+const lebenszyklus = resolve => require(['../page/lebenszyklus.vue'], resolve)
+    //图片上传组件
+const upPhoto = resolve => require(['../page/upPhoto.vue'], resolve)
 
 
-
-const routes = [
-    {
+const routes = [{
         path: '/',
         redirect: '/index'
     },
     {
-    	path: '/index',
-    	name:index,
-    	component:index
+        path: '/index',
+        name: index,
+        component: index
     },
     {
-      path: '/pullUp',
-      name: 'pullUp',
-      component: pullUp
+        path: '/lebenszyklus',
+        name: lebenszyklus,
+        component: lebenszyklus
     },
     {
-      path: '/shaking',
-      name: 'shaking',
-      component: shaking
+        path: '/pullUp',
+        name: 'pullUp',
+        component: pullUp
     },
     {
-      path: '/propPage',
-      name: 'propPage',
-      component: propPage
+        path: '/shaking',
+        name: 'shaking',
+        components: {
+            keepAliveRouter: shaking
+        }
     },
     {
-      path: '/slotPage',
-      name: 'slotPage',
-      component: slotPage
+        path: '/shaking1',
+        name: 'shaking1',
+        components: {
+            keepAliveRouter: shaking1
+        }
     },
     {
-      path: '/flex',
-      name: flex,
-      component: flex
+        path: '/propPage',
+        name: 'propPage',
+        component: propPage
+    },
+    {
+        path: '/slotPage',
+        name: 'slotPage',
+        component: slotPage
+    },
+    {
+        path: '/flex',
+        name: flex,
+        component: flex
+    },
+    {
+        path: '/upPhoto',
+        component: upPhoto
     }
- ]
+
+]
 Vue.use(Router)
 
 
 export default new Router({
-  routes
+    routes
 })

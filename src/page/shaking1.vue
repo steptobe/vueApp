@@ -9,8 +9,7 @@
       <source src="../assets/mp3/skresult.mp3" type="audio/ogg">
       <source src="../assets/mp3/skresult.mp3" type="audio/mpeg"> Your browser does not support the audio tag.
     </audio>
-
-    <div class="hand" v-bind:class="{'hand-animate':rotate}" @click="onBridgeReady">
+    <div class="hand" v-bind:class="{'hand-animate':rotate}" @click="init">
       <img src="../assets/images/shake.png" alt="摇一摇">
     </div>
     <p>马上摇一摇，偷听私密课</p>
@@ -58,56 +57,61 @@ export default {
     } else {
       alert('抱歉，你的手机配置实在有些过不去，考虑换个新的再来试试吧');
     }
-    wx.onMenuShareAppMessage({
-      title: '分享标题', // 分享标题
-      link: 'baidu.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-      imgUrl: '', // 分享图标
-      success: function() {
-        // 用户确认分享后执行的回调函数
-        alert('成功')
-      },
-      cancel: function() {
-        // 用户取消分享后执行的回调函数
-        alert('quxiao')
-      }
-    });
-
-
   },
-  activated() {
-    this.msgboxShow = false
-    this.medalShow = false
-  },
+  // activated(){
+  //     this.msgboxShow = false
+  //     this.medalShow = false
+  //   },
   mounted() {
+    this.init()
     //ios微信可播放兼容代码
-
-    this.onBridgeReady()
-    var needRefresh = sessionStorage.getItem("need-refresh");
-    if (needRefresh) {
-      sessionStorage.removeItem("need-refresh");
-      location.reload();
-    }
+    // if (typeof WeixinJsBridge == 'undefined') {
+    //   　　
+    //   if (document.addEventListener) {　　　
+    //     document.addEventListener('WeixinJsBridgeReady', this.onBridgeReady(), false);
+    //     　　
+    //   } else if (document.attachEvent) {
+    //     　　　　
+    //     document.attachEvent('WeixinJsBridgeReady', this.onBridgeReady);
+    //     　　　　
+    //     document.attachEvent('onWeixinJsBridgeReady', this.onBridgeReady);
+    //     　　
+    //   }
+    // } else {
+    //   this.onBridgeReady();
+    // }
   },
   methods: {
+    init(){
+     
+        wx.config({
+            // 配置信息, 即使不正确也能使用 wx.ready
+            // debug: false,
+            // appId: '',
+            // timestamp: 1,
+            // nonceStr: '',
+            // signature: '',
+            // jsApiList: []
+        });
+        wx.ready(function() {
+         
+            document.getElementById('audio').load();
+            document.getElementById('audio_shake').load();
+            
+           
+        });
+  
+    },
     //摇一摇效果代码
     onBridgeReady() {
       var audio_shake = document.getElementById("audio_shake");
       var audio = document.getElementById("audio");
-      wx.config({
-        // 配置信息, 即使不正确也能使用 wx.ready
-        debug: true,
-        appId: '',
-        timestamp: 1,
-        nonceStr: '',
-        signature: '',
-        jsApiList: []
-      });
-      wx.ready(function() {
-        audio_shake.load();
-        audio.load();
-
-
-      });
+       audio_shake.load();
+      audio.load();
+      audio_shake.addEventListener("canplaythrough", function () {
+        audio_shake.play();
+      audio.play();
+      })
     },
 
     deviceMotionHandler(eventData) {
@@ -132,7 +136,7 @@ export default {
         this.last_y = this.y;
         this.last_z = this.z;
       }
-    },
+    },
     //播放控制
     autoPlay() {
       var index = 0;
@@ -175,7 +179,6 @@ export default {
     },
     getPrivateData() {
       this.data.class_name = "摇一摇"
-     
     },
     msgPop() {
       this.msgboxShow = false

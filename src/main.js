@@ -15,7 +15,6 @@ Vue.use(VueResource)
 Vue.use(headerpage)
 
 Vue.config.productionTip = false
-Vue.hostUrl= 'http://test.talk.99cj.com.cn/'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
