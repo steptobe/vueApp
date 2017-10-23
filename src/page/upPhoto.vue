@@ -2,8 +2,8 @@
   <div>
       <div style="margin-bottom: 20px">
                 <h2>选择图片</h2>
-                <a id='addPic' href="" v-on:click="addPic">添加图片 </a>
-                <input type="file" @change="onFileChange" multiple style="display: none;">
+                <a id='addPic' href="javascript:;" v-on:click="addPic">添加图片 </a>
+                <input type="file" @change="onFileChange" multiple style="display: none;" ref="file">
             </div>
             <div v-if="images.length >0">
                <ul>
@@ -32,8 +32,7 @@ export default {
   },
   methods: {
     addPic(e) {
-      e.preventDefault();
-      $("input[type=file]").trigger("click");
+      this.$refs.file.click()
       return false;
     },
     onFileChange(e) {

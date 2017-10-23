@@ -132,7 +132,7 @@ export default {
         this.last_y = this.y;
         this.last_z = this.z;
       }
-    },
+    },
     //播放控制
     autoPlay() {
       var index = 0;
