@@ -12,6 +12,7 @@
       <mt-cell title="生命周期函数学习" is-link to="/lebenszyklus"></mt-cell>
       <mt-cell title="图片上传组件" is-link to="/upPhoto"></mt-cell>
       <mt-cell title="ios键盘问题" is-link to="/viewpan"></mt-cell>
+      <mt-cell title="vuex学习" is-link to="/vuexdemo"></mt-cell>
     </div>
   </div>
 </template>
