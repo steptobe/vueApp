@@ -13,6 +13,8 @@
       <mt-cell title="图片上传组件" is-link to="/upPhoto"></mt-cell>
       <mt-cell title="轮播" is-link to="/view"></mt-cell>
 
+      <mt-cell title="ios键盘问题" is-link to="/viewpan"></mt-cell>
+      <mt-cell title="vuex学习" is-link to="/vuexdemo"></mt-cell>
     </div>
   </div>
 </template>
