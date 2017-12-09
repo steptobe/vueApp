@@ -14,6 +14,7 @@ const lebenszyklus = resolve => require(['../page/lebenszyklus.vue'], resolve)
     //图片上传组件
 const upPhoto = resolve => require(['../page/upPhoto.vue'], resolve)
 
+const view = resolve => require(['../page/view.vue'], resolve)
 
 const routes = [{
         path: '/',
@@ -66,6 +67,10 @@ const routes = [{
     {
         path: '/upPhoto',
         component: upPhoto
+    },
+    {
+        path: '/view',
+        component: view
     }
 
 ]

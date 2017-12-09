@@ -9,16 +9,18 @@ import './assets/base.css'
 import headerpage from './config/globalComponent'
 import 'mint-ui/lib/style.css'
 import './config/rem'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
 
 Vue.use(Mint)
 Vue.use(VueResource)
 Vue.use(headerpage)
 
 Vue.config.productionTip = false
-/* eslint-disable no-new */
+    /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
+    el: '#app',
+    router,
+    template: '<App/>',
+    components: { App }
 })
