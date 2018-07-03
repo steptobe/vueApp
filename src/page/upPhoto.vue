@@ -44,7 +44,6 @@ export default {
       if (typeof FileReader === "undefined") {
         alert("您的浏览器不支持图片上传，请升级您的浏览器");
         return false;
-      }
       var image = new Image();
       var vm = this;
       var leng = file.length;
@@ -55,6 +54,7 @@ export default {
           vm.images.push(e.target.result);
         };
       }
+    }
     },
     delImage(index) {
       this.images.shift(index);

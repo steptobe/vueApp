@@ -10,6 +10,8 @@ import './assets/base.css'
 import headerpage from './config/globalComponent'
 import 'mint-ui/lib/style.css'
 import './config/rem'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(VueAwesomeSwiper)
 import stores from './store/store'
 
 Vue.use(Mint)
