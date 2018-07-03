@@ -21,6 +21,8 @@ const viewpan = resolve => require(['../page/viewpan.vue'], resolve)
 //vuex
 const vuexdemo = resolve => require(['../page/vuexdemo.vue'], resolve)
 
+const danmu = resolve => require(['../page/danmu.vue'], resolve)
+
 
 
 const routes = [{
@@ -86,6 +88,10 @@ const routes = [{
     {
         path: '/vuexdemo',
         component: vuexdemo
+    },
+    {
+        path: '/danmu',
+        component: danmu
     }
 
 ]
