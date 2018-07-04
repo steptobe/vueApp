@@ -22,13 +22,9 @@ const viewpan = resolve => require(['../page/viewpan.vue'], resolve)
 //vuex
 const vuexdemo = resolve => require(['../page/vuexdemo.vue'], resolve)
 
-<<<<<<< HEAD
+//不碰撞弹幕
 const danmu = resolve => require(['../page/danmu.vue'], resolve)
 
-
-
-=======
->>>>>>> c225bba5665f0fb373c4c55a0150fc5d4ea42902
 const routes = [{
         path: '/',
         redirect: '/index'

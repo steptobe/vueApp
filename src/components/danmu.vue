@@ -6,6 +6,10 @@
 
 		<div class="barrage_container">
 
+         <template v-for="item in r.map_road">
+             <div class="" has_finish="" map_number="" length="" width="" height="" road_name="" :style="item.style">{{item}}</div>
+         </template>
+        
         </div>
 
 	</div>
@@ -13,33 +17,33 @@
 </template>
 
 <script>
-const MAX_AMOUNT = 20;
+const MAX_AMOUNT = 20; //最大条数
 
-const MIN_RUNNERS = 20;
+const MIN_RUNNERS = 20; //最小滑动条数
 
-const UNIT_PADDINGTOP = 15;
+const UNIT_PADDINGTOP = 15; //paddingtop
 
-const UNIT_PADDINGLEFT = 20;
+const UNIT_PADDINGLEFT = 20; //paddingleft
 
 export default {
   data() {
     return {
       d: {
-        square_high: 0,
+        square_high: 0, //总的高度
 
-        roads: 0,
+        roads: 0, //路径
 
-        addRunners: 0
+        addRunners: 0 //增加的行人数
       },
 
       r: {
-        init_all_road: [],
+        init_all_road: [], //初始化全部路径
 
-        all_road: [],
+        all_road: [], //全部路径
 
-        map_road: {},
+        map_road: {}, //能看到的行人
 
-        runner_idx: []
+        runner_idx: [] //行人id
       },
 
       glo: {
@@ -47,16 +51,16 @@ export default {
 
         play_count: 0,
 
-        runners_play_count: 0
+        runners_play_count: 0 //正在走的行人
       },
 
       help: {
-        road_finish: {},
+        road_finish: {}, //结束
 
-        road_finish_runner: {}
+        road_finish_runner: {} //结束的行人
       },
 
-      fail_queue: [],
+      fail_queue: [], //失败的传输
 
       global_time_out: {}
     };
@@ -64,24 +68,23 @@ export default {
   mounted() {},
   methods: {
     _initBarriage(options) {
-      this.d = Object.assign({}, this.d, options);
+      this.d = Object.assign({}, this.d, options); //合并对象
 
-      this.d.square_high = parseFloat(getComputedStyle(this.d.square).height);//获取容器高度
+      this.d.roads = 1; //获取行数
 
-      this.d.roads = (this.d.square_high / this.d.road_high) >> 0;//获取行数
-
-      this.glo.screen_runners_max = this.d.roads * this.d.road_per_runner;//获取最大
+      this.glo.screen_runners_max = this.d.roads * this.d.road_per_runner; //能看到的行人
 
       for (let i = 0; i < this.d.roads; i++) {
         this.r.all_road[i] = {
+          //其中一行的属性
           name: i,
 
-          runner: {},
+          runner: {}, //包含的行人
 
           amount: 0
         };
 
-        this.r.init_all_road[i] = i;
+        this.r.init_all_road[i] = i; //
       }
 
       if (this.d.show_lines) {
@@ -96,24 +99,25 @@ export default {
         document.getElementsByClassName("barrage_line")[0].innerHTML = _lines;
       }
 
-      this.d.addRunners = this.d.runners;
+      this.d.addRunners = this.d.runners; //this.danmuData 全部的数组
 
       if (this.d.runners.length < MIN_RUNNERS) {
         this.d.addRunners = this.shuffle(
           this.d.runners.concat(this.d.runners, this.d.runners)
         );
       }
-
+      console.log("行人", this.d.runners);
       this.d.addRunners.forEach((unit, i) => {
         this.r.map_road[i] = unit;
 
-        this.r.runner_idx.push(i);
+        this.r.runner_idx.push(i); //行人的id
       });
 
-      this.put_runner_to_road(-1, {});
+      this.put_runner_to_road(-1, {}); //put_runner_to_road(roadName, aheadOption)
     },
 
     getRandomInt(min, max) {
+      //随机数
       return Math.floor(Math.random() * (max - min + 1) + min);
     },
 
@@ -171,7 +175,7 @@ export default {
             road_data.amount++;
 
             road_data.runner[runner.mapNumber] = runner.mapObj;
-
+            console.log(road_data.amount)
             if (road_data.amount >= this.d.road_per_runner) {
               this.help.road_finish[roadName] = road_data.amount;
 
@@ -185,6 +189,7 @@ export default {
             }
 
             this.go_run(roadName, runner.mapObj, aheadOption);
+            console.log(runner.mapObj)
           } else {
             this.fail_queue.push({
               roadName: roadName,
@@ -202,9 +207,9 @@ export default {
       }
     },
 
-    //获取正宗走的
+    //获取正走的
     get_runner() {
-      let runner_idx = this.r.runner_idx;
+      let runner_idx = this.r.runner_idx; //正在走的行人id
 
       let runner_idx_length = runner_idx.length;
 
@@ -236,6 +241,7 @@ export default {
     },
 
     init_runner(mapNumber, mapContent, $replace) {
+      //把行人的信息集合放进container里
       let _$div;
 
       if (!$replace) {
@@ -289,6 +295,7 @@ export default {
       let delay = 0;
 
       if (this.d.road_per_runner < MAX_AMOUNT) {
+        //动画等待时间
         delay =
           1 /
           Math.sqrt(this.d.road_per_runner) *
@@ -298,7 +305,7 @@ export default {
       }
 
       let text_length = $runner.getAttribute("length");
-
+      //动画使用时间
       let duration = Math.floor(
         8 +
           Math.abs(Math.cos(roadName)) * Math.max(text_length, 4) +
@@ -453,7 +460,7 @@ export default {
       _$target.style.webkitTransform = "translate3d(0, 0, 0)";
 
       this.r.runner_idx.push(map_number);
-
+      console.log(_$target)
       let fail_unit = this.fail_queue.shift();
 
       if (fail_unit) {

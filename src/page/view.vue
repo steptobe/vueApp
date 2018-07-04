@@ -1,7 +1,7 @@
 <template>
   <swiper :options="swiperOption" ref="mySwiper">
     <swiper-slide v-for="(slide, index) in swiperSlides">I'm Slide {{ slide }} index {{index}}</swiper-slide>
-    <div class="swiper-pagination" slot="pagination"  @click="getIndex">{{}}</div>
+    <div class="swiper-pagination" slot="pagination"  @click="getIndex"></div>
     <div @click="getIndex">kkkkkk</div>
   </swiper>
 </template>
