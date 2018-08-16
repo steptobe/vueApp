@@ -25,6 +25,9 @@ const vuexdemo = resolve => require(['../page/vuexdemo.vue'], resolve)
 //不碰撞弹幕
 const danmu = resolve => require(['../page/danmu.vue'], resolve)
 
+//video.js
+const video = resolve => require(['../page/video.vue'], resolve)
+
 const routes = [{
         path: '/',
         redirect: '/index'
@@ -33,6 +36,11 @@ const routes = [{
         path: '/index',
         name: index,
         component: index
+    },
+    {
+      path: '/video',
+      name: video,
+      component: video
     },
     {
         path: '/lebenszyklus',

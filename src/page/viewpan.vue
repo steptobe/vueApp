@@ -73,8 +73,8 @@ main {
 display: flex;
   width: 100%;
   overflow: hidden;
-  
-flex-direction: column;  
+
+flex-direction: column;
   /*聊天窗口_顶部*/
   /*聊天窗口_顶部*/
   .nav {
@@ -95,7 +95,7 @@ flex-direction: column;
     position: relative;
     // top: 50px;
     // bottom: 50px;
-   
+
     width: 100%;
     height: calc(100% - 50px);
  flex: 1;
@@ -106,7 +106,7 @@ flex-direction: column;
   /*聊天窗口_底部*/
   #returnframe {
     display: block;
-    position: relative;
+    position: fixed;
     bottom: 0;
     overflow-x: hidden;
     width: 100%;

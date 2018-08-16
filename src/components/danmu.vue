@@ -142,7 +142,7 @@ export default {
     put_runner_to_road(roadName, aheadOption) {
       if (roadName == -1) {
         if (this.r.init_all_road.length) {
-          this.match_road_to_runner(this.r.init_all_road[0]);
+          this.match_road_to_runner(this.r.init_all_road[0]);//
 
           this.r.init_all_road.splice(0, 1);
 
@@ -158,7 +158,7 @@ export default {
       let road_data_idx = "";
 
       let roadDatas = this.r.all_road.filter(function(obj, i) {
-        if (obj.name == roadName) {
+        if (obj.name == roadName) {//获取匹配的数据
           road_data_idx = i;
 
           return obj;

@@ -16,6 +16,7 @@
       <mt-cell title="ios键盘问题" is-link to="/viewpan"></mt-cell>
       <mt-cell title="vuex学习" is-link to="/vuexdemo"></mt-cell>
       <mt-cell title="弹幕" is-link to="/danmu"></mt-cell>
+      <mt-cell title="video直播" is-link to="/video"></mt-cell>
     </div>
   </div>
 </template>
