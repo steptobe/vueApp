@@ -4,59 +4,58 @@
                     <video-player class="vjs-custom-skin"
                                   ref="videoPlayer"
                                   :options="playerOptions"
-                                  :playsinline="true"
+                                  webkit-playsinline="true"
                                   @play="onPlayerPlay($event)"
                                   @pause="onPlayerPause($event)"
                                   @statechanged="playerStateChanged($event)"
                                  >
                     </video-player>
+
          </div>
           <!-- <img :src="playerOptions.poster" v-if="videoPoster"> -->
     </div>
 </template>
 <script>
-import VueVideoPlayer from "vue-video-player";
+import { videoPlayer } from "vue-video-player";
 import "videojs-contrib-hls";
 require("video.js/dist/video-js.css");
 require("vue-video-player/src/custom-theme.css");
 export default {
-
   data() {
     return {
-        playerOptions: {
-          fluid: true,
-            sources: [
-              {
-                withCredentials: false,
-                type: "application/x-mpegURL",
-                src:  "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8" //
-              }
-            ],
-            controlBar: {
-              timeDivider: false,
-              durationDisplay: false
-            },
-            flash: { hls: { withCredentials: false } },
-            html5: { hls: { withCredentials: false } },
-            poster: '',
-            playsinline: true
-      },
+      playerOptions: {
+      //  height: '360',
+          // autoplay: true,
+          // muted: true,
+          language: 'en',
+          playbackRates: [0.7, 1.0, 1.5, 2.0],
+          sources: [{
+            type: "video/mp4",
+            // mp4
+            src: "http://vjs.zencdn.net/v/oceans.mp4",
+            // webm
+            // src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
+          }],
+            playsinline: true,
+          poster: "https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg",
+      }
     };
   },
   computed: {
-      player() {
-        return this.$refs.videoPlayer.player
-      }
-    },
+    player() {
+      return this.$refs.videoPlayer.player;
+    }
+  },
+  components:{
+    videoPlayer
+  },
   methods: {
     // listen event
     onPlayerPlay(player) {
-
       console.log("player play!", player);
     },
     onPlayerPause(player) {
       console.log("player pause!", player);
-
     },
     onPlayerEnded(player) {
       console.log("player ended!", player);
@@ -87,7 +86,7 @@ export default {
     // player is ready
     playerReadied(player) {
       // seek to 10s
-      alert(player)
+      alert(player);
       player.currentTime(10);
       // console.log('example 01: the player is readied', player)
       console.log("the player is readied", player);
@@ -96,7 +95,7 @@ export default {
   }
 };
 </script>
-<style  lang="scss" type="text/scss">
+<style  lang="scss">
 .video {
   position: relative;
   width: 100%;
@@ -132,15 +131,15 @@ export default {
     .vjs-big-play-button {
       border: 1px solid #fff;
       background-color: #fff;
-    //   background-color: rgba(193, 55, 51, 0.65);
+      //   background-color: rgba(193, 55, 51, 0.65);
       border-radius: 50%;
-    //   margin-left: -24px;
-    // display: inline-block;
+      //   margin-left: -24px;
+      // display: inline-block;
       font-size: 24px;
       width: 58px;
       height: 58px !important;
 
-    //   margin-top: -12px !important;
+      //   margin-top: -12px !important;
     }
     .vjs-loading-spinner {
       background-color: rgba(255, 92, 54, 0.65);

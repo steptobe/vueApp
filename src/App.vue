@@ -5,6 +5,14 @@
           <router-view name="keepAliveRouter"></router-view>
         </keep-alive>
         <!-- 不需要缓存的路由 -->
+         <!-- <template v-if="$route.meta.login">
+
+            <router-view></router-view>
+          </template>
+          <template v-else>
+            <router-view></router-view>
+          </template> -->
+
         <transition name="fade" mode="out-in"><router-view></router-view></transition>
   </div>
 </template>
@@ -16,7 +24,15 @@ export default {
   name: 'app',
   components:{
     propPage
-  }
+  },
+   data() {
+      return {
+
+      };
+    },
+    methods: {
+
+    }
 }
 </script>
 

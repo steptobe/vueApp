@@ -33,7 +33,7 @@
                 this.$store.commit('add',num)
             }
         },
-        computed:{
+        computed:{  
             getState(){
                 return this.$store.state.count
             },

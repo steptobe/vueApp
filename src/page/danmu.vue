@@ -2,7 +2,7 @@
 	<div class="danmu">
 		  <div class="barrage-box" v-show="danmuData.length > 0 ">
                 <danmu ref="barrage" class="barrage" v-show="danmuData.length > 0"></danmu>
-               
+
             </div>
 	</div>
 </template>
@@ -101,10 +101,13 @@ export default {
 		}
 	},
 	mounted() {
-		this.getData()
-
+		// this.getData()
+    this.reGet();
 	},
     methods:{
+      reGet(){
+              console.log('第二次获取')
+            },
         getData(){
             this.$refs.barrage._initBarriage({
               square: document.getElementsByClassName("barrage_container")[0], //容器

@@ -1,11 +1,11 @@
 <template>
   <swiper :options="swiperOption" ref="mySwiper">
-    <swiper-slide v-for="(slide, index) in swiperSlides">I'm Slide {{ slide }} index {{index}}</swiper-slide>
+    <!-- <swiper-slide v-for="(slide, index) in swiperSlides">I'm Slide {{ slide }} index {{index}}</swiper-slide> -->
     <div class="swiper-pagination" slot="pagination"  @click="getIndex"></div>
     <div @click="getIndex">kkkkkk</div>
   </swiper>
 </template>
- 
+
 <script>
 require('swiper/dist/css/swiper.css')
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
@@ -19,7 +19,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
     data() {
       return {
-          
+
         swiperOption: {
           autoplay: 3500,
                   notNextTick: true,
@@ -45,7 +45,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
         return this.$refs.mySwiper.swiper
       },
     //   index(){
-          
+
     //               return this.mySwiper.activeIndex;
 
     //   }
@@ -77,13 +77,13 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
         // index(val){
         //     // alert(val)
         // },
-        mySwiper:{  
-                handler:function(val,oldval){  
+        mySwiper:{
+                handler:function(val,oldval){
                     // this.getIndex()
                     alert(val.activeIndex)
-                },  
-                deep:true//对象内部的属性监听，也叫深度监听  
-            },  
+                },
+                deep:true//对象内部的属性监听，也叫深度监听
+            },
     }
   }
 </script>

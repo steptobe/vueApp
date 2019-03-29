@@ -7,6 +7,7 @@ const shaking = resolve => require(['../page/shaking.vue'], resolve)
 const shaking1 = resolve => require(['../page/shaking1.vue'], resolve)
 const propPage = resolve => require(['../page/prop.vue'], resolve)
 const slotPage = resolve => require(['../page/slot.vue'], resolve)
+const animateDemo = resolve => require(['@/page/animateDemo'], resolve)
 const inputPattern = resolve => require(['../page/inputPattern.vue'], resolve)
     //flexbox
 const flex = resolve => require(['../page/flex.vue'], resolve)
@@ -28,6 +29,12 @@ const danmu = resolve => require(['../page/danmu.vue'], resolve)
 //video.js
 const video = resolve => require(['../page/video.vue'], resolve)
 
+//video.js
+const ele = resolve => require(['../page/ele.vue'], resolve)
+const echart = resolve => require(['../page/echart.vue'], resolve)
+
+
+
 const routes = [{
         path: '/',
         redirect: '/index'
@@ -35,12 +42,16 @@ const routes = [{
     {
         path: '/index',
         name: index,
-        component: index
+        component: index,
+        meta: {
+          login: true
+        }
     },
     {
       path: '/video',
       name: video,
-      component: video
+      component: video,
+
     },
     {
         path: '/lebenszyklus',
@@ -79,12 +90,22 @@ const routes = [{
     {
         path: '/flex',
         name: flex,
-        component: flex
+        component: flex,
+        meta: {
+          login: true
+        }
     },
     {
         path: '/upPhoto',
         component: upPhoto
     },
+    {
+      path: '/ele',
+      component: ele,
+      meta: {
+        login: true
+      }
+  },
     {
         path: '/view',
         component: view
@@ -104,6 +125,14 @@ const routes = [{
     {
         path: '/danmu',
         component: danmu
+    },
+    {
+      path: '/echart',
+      component: echart
+    },
+    {
+      path:'/animateDemo',
+      component:animateDemo
     }
 
 ]

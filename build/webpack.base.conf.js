@@ -9,7 +9,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: ['./node_modules/babel-polyfill/dist/polyfill.js','./src/main.js']
   },
   output: {
     path: config.build.assetsRoot,
@@ -32,10 +32,15 @@ module.exports = {
         loader: 'vue-loader',
         options: vueLoaderConfig
       },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'babel-loader',
+      //   include: [resolve('src'), resolve('test')]
+      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/vue-echarts-v3/src')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
